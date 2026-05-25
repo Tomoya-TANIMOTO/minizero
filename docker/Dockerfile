@@ -17,7 +17,6 @@ RUN rm /etc/apt/sources.list.d/cuda.list || true && \
     python3-pip \
     python3-dev \
     python3-opencv \
-    python3-pybind11 \
     libopencv-dev \
     libarchive-tools \
     libboost-all-dev && \
@@ -25,6 +24,7 @@ RUN rm /etc/apt/sources.list.d/cuda.list || true && \
     python3 -m pip install -U pip \
     gdown \
     cmake==3.25.2 \
+    pybind11[global]==2.11.1 \
     numpy \
     pandas \
     jupyter \
