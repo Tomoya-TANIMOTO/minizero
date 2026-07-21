@@ -62,9 +62,12 @@ def check(path, m):
     d = json.load(open(path))
     bsize = d["board_size"]
     moves = d["moves"]
-    expected = 64  # gen_cmds は tree_json を 1 + MAX 回発行する（MAX=64）
+    # 序盤固定の記録（capture_opening.sh）は固定手の分だけ moves が短い。
+    nfix = len(d.get("opening", []))
+    expected = 64 - nfix
     print(f"{path}")
     print(f"  [1] ply 数 {len(moves)}"
+          + (f"（固定 {nfix} 手 + {expected}）" if nfix else "")
           + ("" if len(moves) == expected else f"  ← 期待 {expected} と不一致（tree_json が欠落した疑い）"))
 
     n_ok = n_not_child = n_occupied = n_pass_ok = n_pass_bad = n_resign = 0

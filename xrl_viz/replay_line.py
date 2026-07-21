@@ -88,7 +88,11 @@ if __name__ == "__main__":
     src, max_ply, n, outp = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), sys.argv[4]
     binary = sys.argv[5] if len(sys.argv) > 5 else "build/othello/minizero_othello"
     d = json.load(open(os.path.join(REPO, src)))
-    line = recover_line(d["moves"], d["board_size"], max_ply)
+    # capture_opening.sh の記録は固定手を moves[] に含めないので、先頭に足す。
+    # moves[0] の board は固定手を打ち終えた局面なので、盤面差分の復元は
+    # moves[] だけで正しく回る。
+    opening = [(o["ply"], o["color"], o["move"]) for o in d.get("opening", [])]
+    line = opening + recover_line(d["moves"], d["board_size"], max_ply)
     res = run(line, n, binary)
     with open(os.path.join(REPO, outp), "w") as f:
         json.dump(res, f)
