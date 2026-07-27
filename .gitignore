@@ -17,3 +17,12 @@ __pycache__
 
 *.json_bak*
 *.jsonl
+
+# research data (keep game.json for GUI, ignore the rest)
+xrl_viz/data/*.json
+xrl_viz/data/**/*.json
+# 破損ハーネスの再現物一式 (json 以外の .out/.err も含むため明示)
+xrl_viz/data/_corrupt_harness_bug/
+xrl_viz/game_eval_fixed.json
+xrl_viz/tree.json
+xrl_viz/tree_first.json
