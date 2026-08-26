@@ -1,0 +1,214 @@
+{
+ "id": "S2_ply17",
+ "source": {
+  "file": "xrl_viz/data/corpus/replay_S2_n128.json",
+  "ply": 17,
+  "engine_commit": "fd5d477116b0850aca61fb067869a1009a536dea",
+  "n_simulations": 128,
+  "game": "othello_8x8",
+  "board_size": 8
+ },
+ "initial_placement": {
+  "D4": "X",
+  "E4": "O",
+  "D5": "O",
+  "E5": "X"
+ },
+ "move_sequence": [
+  "BE3",
+  "WF3",
+  "BF4",
+  "WD3",
+  "BE2",
+  "WG4",
+  "BC4",
+  "WC3",
+  "BE6",
+  "WF6",
+  "BD2",
+  "WC2",
+  "BF2",
+  "WC6",
+  "BB4",
+  "WD6",
+  "BG3"
+ ],
+ "to_play": "W",
+ "to_play_label": "白(O)",
+ "legend": {
+  "X": "黒",
+  "O": "白",
+  ".": "空"
+ },
+ "cells": {
+  "A1": ".",
+  "A2": ".",
+  "A3": ".",
+  "A4": ".",
+  "A5": ".",
+  "A6": ".",
+  "A7": ".",
+  "A8": ".",
+  "B1": ".",
+  "B2": ".",
+  "B3": ".",
+  "B4": "X",
+  "B5": ".",
+  "B6": ".",
+  "B7": ".",
+  "B8": ".",
+  "C1": ".",
+  "C2": "O",
+  "C3": "X",
+  "C4": "X",
+  "C5": ".",
+  "C6": "O",
+  "C7": ".",
+  "C8": ".",
+  "D1": ".",
+  "D2": "X",
+  "D3": "O",
+  "D4": "X",
+  "D5": "O",
+  "D6": "O",
+  "D7": ".",
+  "D8": ".",
+  "E1": ".",
+  "E2": "X",
+  "E3": "X",
+  "E4": "O",
+  "E5": "O",
+  "E6": "O",
+  "E7": ".",
+  "E8": ".",
+  "F1": ".",
+  "F2": "X",
+  "F3": "X",
+  "F4": "O",
+  "F5": ".",
+  "F6": "O",
+  "F7": ".",
+  "F8": ".",
+  "G1": ".",
+  "G2": ".",
+  "G3": "X",
+  "G4": "O",
+  "G5": ".",
+  "G6": ".",
+  "G7": ".",
+  "G8": ".",
+  "H1": ".",
+  "H2": ".",
+  "H3": ".",
+  "H4": ".",
+  "H5": ".",
+  "H6": ".",
+  "H7": ".",
+  "H8": "."
+ },
+ "ascii_rank8_to_rank1": [
+  ". . . . . . . .",
+  ". . . . . . . .",
+  ". . O O O O . .",
+  ". . . O O . . .",
+  ". X X X O O O .",
+  ". . X O X X X .",
+  ". . O X X X . .",
+  ". . . . . . . ."
+ ],
+ "empties": 43,
+ "legal_moves": [
+  "A4",
+  "B2",
+  "B3",
+  "B5",
+  "C1",
+  "C5",
+  "D1",
+  "E1",
+  "F1",
+  "G2",
+  "H2",
+  "H3"
+ ],
+ "root_visits": [
+  {
+   "move": "B5",
+   "N": 34,
+   "rank": 1,
+   "in_figure": true
+  },
+  {
+   "move": "H3",
+   "N": 34,
+   "rank": 2,
+   "in_figure": true
+  },
+  {
+   "move": "C1",
+   "N": 14,
+   "rank": 3,
+   "in_figure": true
+  },
+  {
+   "move": "E1",
+   "N": 14,
+   "rank": 4,
+   "in_figure": true
+  },
+  {
+   "move": "C5",
+   "N": 6,
+   "rank": 5,
+   "in_figure": true
+  },
+  {
+   "move": "B3",
+   "N": 6,
+   "rank": 6,
+   "in_figure": true
+  },
+  {
+   "move": "F1",
+   "N": 6,
+   "rank": 7,
+   "in_figure": false
+  },
+  {
+   "move": "D1",
+   "N": 6,
+   "rank": 8,
+   "in_figure": false
+  },
+  {
+   "move": "A4",
+   "N": 2,
+   "rank": 9,
+   "in_figure": false
+  },
+  {
+   "move": "H2",
+   "N": 2,
+   "rank": 10,
+   "in_figure": false
+  },
+  {
+   "move": "B2",
+   "N": 2,
+   "rank": 11,
+   "in_figure": false
+  },
+  {
+   "move": "G2",
+   "N": 2,
+   "rank": 12,
+   "in_figure": false
+  }
+ ],
+ "played": "H3",
+ "verification": {
+  "replay_matches_tree_json": true,
+  "mismatched_cells": [],
+  "replayed_to_play": "W"
+ }
+}

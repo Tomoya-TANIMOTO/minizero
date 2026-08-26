@@ -144,6 +144,12 @@ const other=(p)=> p==="B"?"W":"B";
 
 function normalize(obj){
   if(obj.moves) return obj;
+  if(Array.isArray(obj)){  // replay_n*.json 形式: [{ply,color,n16_move,engine_move,tree:{...,root}}]
+    const g=obj[0]&&obj[0].tree||{};
+    return {game:g.game, board_size:g.board_size,
+      moves:obj.map(e=>({ply:e.ply, played:e.engine_move,
+        to_play:e.tree.to_play, board:e.tree.board, root:e.tree.root}))};
+  }
   return {game:obj.game, board_size:obj.board_size, moves:[Object.assign({ply:0,played:obj.played??null},obj)]};
 }
 function indexTree(root){let id=0;(function w(n,p,d){n._id=id++;n._parent=p;n._depth=d;(n.children||[]).forEach(c=>w(c,n,d+1));})(root,null,0);}

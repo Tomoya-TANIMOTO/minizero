@@ -1,0 +1,14 @@
+生成日: 2026-07-28
+バイナリ: build/othello/minizero_othello
+  md5           = c508fe4ede726cf66d9b468762c5306c
+  mtime         = 2026-07-21 12:37:13.512911598 +0900
+  自己申告の版  = Version: fd5d47-dirty
+リポジトリ HEAD（生成時） = 8714ab2baee94300cbb4c5c4cc33cb88496076a7
+既存コーパス xrl_viz/data/corpus の ENGINE_COMMIT.txt = fd5d477116b0850aca61fb067869a1009a536dea
+
+注: HEAD は fd5d477 から 8714ab2 に進んでいるが、その差分は docs/ tools/ xrl_viz/ .gitignore
+のみでエンジンソース minizero/ は1行も変わっていない。バイナリは 2026-07-21 12:37 のまま
+（自己申告 fd5d47-dirty）。E3 D3 C4 の ply3 を撮り直して既存 src_S1_n128.json の
+moves[0] と突き合わせた結果、root 以下 129 ノードが完全ビット一致（N/Q/P/v/
+gaz_decision_score/gaz_eliminated_round のいずれも Δ=0）。
+再現確認の一次データ: xrl_viz/data/sym/repro_S1_ply3.json
