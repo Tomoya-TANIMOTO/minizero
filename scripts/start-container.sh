@@ -15,8 +15,8 @@ usage()
 	exit 1
 }
 
-image_name=minizero:rtx5060ti
-container_tool=$(basename $(which podman || which docker) 2>/dev/null)
+image_name=minizero:othello
+container_tool=$(basename $(which docker || which podman) 2>/dev/null)
 if [[ ! $container_tool ]]; then
 	echo "Neither podman nor docker is installed." >&2
 	exit 1
