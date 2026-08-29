@@ -299,6 +299,18 @@ void appendNodeJson(std::ostringstream& oss, const actor::MCTSNode* node, int bs
         score_oss << std::setprecision(std::numeric_limits<float>::max_digits10) << gaz_score;
         oss << score_oss.str();
     }
+    // Q-value trace: one [simulation index, mean_ after that update] pair per backup that
+    // touched this node, oldest first, so a consumer can see when the evaluation flipped.
+    // Printed with the stream's default format, i.e. exactly the format "Q" above uses --
+    // these are the same mean_ values at earlier points in the search.
+    oss << ",\"q_trace\":[";
+    bool first_q = true;
+    for (const auto& entry : node->getQTrace()) {
+        if (!first_q) { oss << ","; }
+        oss << "[" << entry.first << "," << entry.second << "]";
+        first_q = false;
+    }
+    oss << "]";
     oss << ",\"children\":[";
     bool first = true;
     for (int i = 0; i < node->getNumChildren(); ++i) {

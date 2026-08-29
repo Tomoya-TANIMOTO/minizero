@@ -16,6 +16,7 @@ void MCTSNode::reset()
     reward_ = 0.0f;
     gumbel_eliminated_round_ = -99;
     gumbel_decision_score_ = std::numeric_limits<float>::quiet_NaN();
+    q_trace_.clear();
     first_child_ = nullptr;
 }
 
@@ -186,6 +187,10 @@ void MCTS::expand(MCTSNode* leaf_node, const std::vector<ActionCandidate>& actio
 void MCTS::backup(const std::vector<MCTSNode*>& node_path, const float value, const float reward /* = 0.0f */)
 {
     assert(node_path.size() > 0);
+    // Read the simulation index once, before any add(): backup walks leaf -> root, so the
+    // root's count changes last. Reading it per node would give the root a different index
+    // from its descendants and misalign the traces of sibling subtrees.
+    const int simulation = getNumSimulation();
     float updated_value = value;
     node_path.back()->setValue(value);
     node_path.back()->setReward(reward);
@@ -193,6 +198,7 @@ void MCTS::backup(const std::vector<MCTSNode*>& node_path, const float value, co
         MCTSNode* node = node_path[i];
         float old_mean = node->getReward() + config::actor_mcts_reward_discount * node->getMean();
         node->add(updated_value);
+        node->addQTrace(simulation, node->getMean());
         updateTreeValueBound(old_mean, node->getReward() + config::actor_mcts_reward_discount * node->getMean());
         updated_value = node->getReward() + config::actor_mcts_reward_discount * updated_value;
     }

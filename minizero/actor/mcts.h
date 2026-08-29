@@ -10,6 +10,7 @@
 #include <limits>
 #include <map>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace minizero::actor {
@@ -41,6 +42,7 @@ public:
     inline void setFirstChild(MCTSNode* first_child) { TreeNode::setFirstChild(first_child); }
     inline void setGumbelEliminatedRound(int round) { gumbel_eliminated_round_ = round; }
     inline void setGumbelDecisionScore(float score) { gumbel_decision_score_ = score; }
+    inline void addQTrace(int simulation, float q) { q_trace_.emplace_back(simulation, q); }
 
     // getter
     inline int getHiddenStateDataIndex() const { return hidden_state_data_index_; }
@@ -55,6 +57,7 @@ public:
     inline float getReward() const { return reward_; }
     inline int getGumbelEliminatedRound() const { return gumbel_eliminated_round_; }
     inline float getGumbelDecisionScore() const { return gumbel_decision_score_; }
+    inline const std::vector<std::pair<int, float>>& getQTrace() const { return q_trace_; }
     inline virtual MCTSNode* getChild(int index) const override { return (index < num_children_ ? static_cast<MCTSNode*>(first_child_) + index : nullptr); }
 
 protected:
@@ -78,6 +81,12 @@ protected:
     //                         node took part in; NaN if the node was never scored.
     int gumbel_eliminated_round_;
     float gumbel_decision_score_;
+    // Q-value trace (for explainability logging; not used by the search itself).
+    // One (simulation index, mean_ after the update) pair per backup that touched this node,
+    // in chronological order. The simulation index is read once at the top of MCTS::backup()
+    // so every node on one simulation's path shares the same index. Cleared in reset(),
+    // which is what MCTS::expand() calls when it reuses a node for a new position.
+    std::vector<std::pair<int, float>> q_trace_;
 };
 
 class HiddenStateData {
